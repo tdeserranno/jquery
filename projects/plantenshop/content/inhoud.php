@@ -310,8 +310,10 @@ function getPlanten($soort_id, $kleur, $hoogte_min, $hoogte_max){
 			<div><label for='soort_id'>Soorten: </label>". $soorten_dd . "</div>";
     
 	//adv zoeken
+//		$str .= "<!--start geavanceerd zoeken -->
+//				<div id='adv_zoeken' style='display:none' >"; // 
 		$str .= "<!--start geavanceerd zoeken -->
-				<div id='adv_zoeken' style='display:none' >"; // 
+				<div id='adv_zoeken'>"; // 
 		
 		$str .= "<div><label for='kleur'>kleur: </label>". $kleuren_dd . "</div>";
 		$str .= "<div>
