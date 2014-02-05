@@ -62,6 +62,7 @@ if(isset($_GET['page'])){
 			$tpl['body_id'] 			= "zorg";					
 			//content
 			$tpl['rechts'] 				= getVerzorging();
+                        $tpl['paginaScripts'] = getScriptElements('js/zorg.js');
 			
 			break;		
 		
@@ -83,6 +84,10 @@ if(isset($_GET['page'])){
 			$tpl['body_id'] 			= "registreer";					
 			//content
 			$tpl['rechts'] 				= getRegistreer();
+                        $tpl['paginaScripts'] = getScriptElements(array(
+                                'js/vendor/jquery/jquery-validation-1.11.1/dist/jquery.validate.min.js',
+                                'js/registreer.js'
+                                ));
 			
 			break;		
 		
@@ -98,6 +103,7 @@ else {
 		$tpl['body_id'] 				= "home";	
 		//content
 		$tpl['rechts'] 					= getHome();
+                $tpl['paginaScripts'] = getScriptElements('js/home.js');
 		
 }
 

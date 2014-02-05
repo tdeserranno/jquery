@@ -319,17 +319,18 @@ function getPlanten($soort_id, $kleur, $hoogte_min, $hoogte_max){
 		$str .= "<div>
 					<label for='hoogte'>hoogte tussen: </label>
 					<div class='controlbox vert'>
-					<input type='text' id='hoogte_min' name='hoogte_min' size='4' class='kort' value='0'  /> en
-					<input type='text' id='hoogte_max' name='hoogte_max' size='4' class='kort' value='5000' />
+					<input type='text' id='hoogte_min' name='hoogte_min' size='4' class='kort' /> en
+					<input type='text' id='hoogte_max' name='hoogte_max' size='4' class='kort' />
 					</div>
 					</div>";
-						
+//     originele inputs                 <input type='text' id='hoogte_min' name='hoogte_min' size='4' class='kort' value='0'  /> en
+//					<input type='text' id='hoogte_max' name='hoogte_max' size='4' class='kort' value='5000' />		
 		$str .= "<div>
 					<label></label>
 					<div class='controlbox vert'>
 
 					<!--start slider -->
-					
+					<div id='slider-range-hoogte' class='slider'></div>
 					<!--einde slider -->
 					
 					</div>
@@ -372,7 +373,9 @@ function getRegistreer(){
   				</section>";
 		
   		$str .= "<section>
-		
+                                <!--start foutBox-->
+                                    <div class='foutBox' id='fouten'><h2>Fouten</h2><ul></ul></div>
+                                <!--einde foutBox-->
 				  <form id='regForm' name='regForm' method='get' action='reflect_data.php'>
 					<fieldset>
 					  <legend>Uw persoonlijke gegevens</legend>
@@ -386,7 +389,7 @@ function getRegistreer(){
 					  </div>
 					  <div>
 						<label for='straat'>Straat:</label>
-						<input type='text' title='uw straat  met huisnummer'  placeholder='straat + huisnummer'  id='straat' name='straat'  />
+						<input type='text' title='uw straat  met huisnummer'  placeholder='straat + huisnummer'  id='straat' name='straat' required />
 					  </div>
 					  <div>
 						<label for='gemeente'>Gemeente:</label>
@@ -406,12 +409,14 @@ function getRegistreer(){
 					  </div>
 					  <div>
 						<label>geslacht<abbr class='verplicht' title='verplicht'>*</abbr>:</label>
-						<label class='labelRadio' for='man'>
-						  <input type='radio'  title='uw sexe' id='man'  name='sexe' value='m' />
-						  Man </label>
-						<label class='labelRadio' for='vrouw' >
-						  <input type='radio' title='uw sexe' id='vrouw' name='sexe' value='v' />
-						  Vrouw </label>
+                                                <div class='controlbox'>
+                                                    <label class='labelRadio' for='man'>
+                                                      <input type='radio'  title='uw sexe' id='man'  name='sexe' value='m' />
+                                                      Man </label>
+                                                    <label class='labelRadio' for='vrouw' >
+                                                      <input type='radio' title='uw sexe' id='vrouw' name='sexe' value='v' />
+                                                      Vrouw </label>
+                                                </div>
 					  </div>
 					</fieldset>";
 					
@@ -445,7 +450,9 @@ function getRegistreer(){
 					  <legend>Aanmelding</legend>
 					  <div>
 						<label for='username'>gebruikersnaam<abbr class='verplicht' title='verplicht'>*</abbr>:
-						
+						<!--start dialogbutton-->
+                                                <br><a href='#' id='dialog_link_username'>Meer uitleg</a>
+						<!--einde dialogbutton-->
 						</label>
 						<input type='text' title='de gebruikersnaam waarmee u wil aanmelden'   id='username' name='username'  />
 					  </div>
@@ -476,9 +483,14 @@ function getRegistreer(){
 					  </div>
 					</fieldset>
 				  </form>
+                                  <!--start foutBox-->
+                                    <div class='foutBox'><a href='#fouten'>sommige ingevulde gegevens zijn foutief!</a></div>
+                                  <!--einde foutBox-->
 				  ";
 		
-		
+                $str .= getUsernameDialog();
+     
+                        
 	return $str; 
 }
 
@@ -492,9 +504,23 @@ function getVerzorging(){
 				</section>";
 				
   		$str .= "<section>
-				
+				<p>
+                                    <label><input type='checkbox' id='toonWaterplanten' />info inclusief waterplanten</label>
+                                </p>
+                                <p>
+                                    Soms is goede verzorging onvoldoende: een aantal ziektes belagen onze tuinplanten.
+                                    <a href='#' id='toonZiektes'>Meer weten over ziektes?</a>
+                                </p>
 				<!--start div verzorging-->
 				<div id='verzorging'>
+                                <!--start UL voor tabs-->
+                                <ul>
+                                    <li><a href='#bodem'>Bodem en voedsel</a></li>
+                                    <li><a href='#vermeerderen'>Vermeerderen</a></li>
+                                    <li><a href='#licht'>Zon of schaduw</a></li>
+                                    <li><a href='#waterplanten'>Waterplanten</a></li>
+                                </ul>
+                                <!--einde UL voor tabs-->
 				<div id='bodem'>
 				<h3>Zorg voor een vochtige wortelkluit</h3>
 				<p> Vaste planten worden tegenwoordig afgeleverd in potten. Ze zien er misschien niet altijd even florissant uit, maar de kans dat de planten in de tuin onmiddellijk doorgroeien is bijna 100%. Een ander voordeel is dat in feite het hele jaar door geplant kan worden. Maar de voorkeur van de vakman gaat uit naar planten in het najaar. De ervaring leert echter, dat tuinliefhebbers vrijwel steeds het nieuwe groeiseizoen afwachten en dus gaan planten in april en mei.</p>
@@ -642,7 +668,7 @@ function getUsernameDialog(){
     		<p>De gebruikersnaam moet uniek zijn, als iemand anders ze al heeft zal je gevraagd worden een andere te kiezen</p>
 			</div>
   			<!-- ui-dialog -->";
-  
+        
 	return $str; 
 }
 

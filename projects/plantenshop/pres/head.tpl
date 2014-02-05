@@ -26,6 +26,12 @@
 <script src="js/vendor/jquery/js/jquery-1.10.2.js"></script>
 <script src="js/vendor/jquery/js/jquery-ui-1.10.4.custom.min.js"></script>
 
+<!-- JQ Datepicker localization files-->
+<script type="text/javascript" src="js/vendor/jquery/jquery-validation-1.11.1/localization/jquery.ui.datepicker-de.js"></script>
+<script type="text/javascript" src="js/vendor/jquery/jquery-validation-1.11.1/localization/jquery.ui.datepicker-fr.js"></script>
+<script type="text/javascript" src="js/vendor/jquery/jquery-validation-1.11.1/localization/jquery.ui.datepicker-nl-BE.js"></script>
+
+
 <!-- pagina-gebonden JS scripts-->
 {$paginaScripts}
 
