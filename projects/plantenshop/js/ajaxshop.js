@@ -1,30 +1,4 @@
 //^^^^SHOP.JS^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//====GLOBALS===================================================================
-//----DATA TABLE----------------------------------------------------------------
-var oTable = $('#plantenlijst').dataTable({
-  sAjaxSource: 'services/ajax_json_dt_planten.php',
-  bPaginate: true,
-  bSort: true,
-  iDisplayLength: 20,
-//    iDisplayStart: 20,
-  sPaginationType: 'full_numbers',
-  aLengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'Alle records']],
-  bProcessing: true,
-  aaSorting: [[6, 'asc'], [2, 'desc']],
-  aoColumnDefs: [
-    {bVisible: false, aTargets: [5]},
-    {bSortable: false, aTargets: [2, 6]},
-    {asSorting: ['desc'], aTargets: [3]},
-    {bSearchable: false, sTitle: 'Rubriek', aTargets: [6]},
-    {sTitle: 'Lengte', sWidth: '5%',  aTargets: [2]},
-    {sClass: 'dt_fluo', aTargets: [0]}
-  ],
-  oLanguage: {sUrl: 'js/vendor/jquery/datatables1.9.4/media/js/datatables.nederlands.txt'}
-});
-//====EVENT HANDLERS============================================================
-$('#kleur, #soort').on('change', function(){
-  refreshDataTable();
-});
 //====DOCUMENT.READY============================================================
 $(function() {
   var $advZoeken = $('#adv_zoeken');
@@ -80,10 +54,41 @@ $(function() {
   $('#hoogte_min').val($('#slider-range-hoogte').slider('values', 0));
   $('#hoogte_max').val($('#slider-range-hoogte').slider('values', 1));
   
+  //EVENT HANDLERS
+  $('#kleur, #soort_id, #hoogte_min, #hoogte_max').on('change', function() {
+    refreshDataTable(); 
+  });
   
+  //DATA TABLES
+  oTable = $('#plantenlijst').dataTable({
+    sAjaxSource: 'services/ajax_json_dt_planten.php',
+    fnServerData: function(sSource, aoData, fnCallback) {
+      $.getJSON(
+              sSource,
+              $('form').serializeArray(),
+              function(json) {fnCallback(json)});
+    },
+    bPaginate: true,
+    bSort: true,
+    iDisplayLength: 20,
+//    iDisplayStart: 20,
+    sPaginationType: 'full_numbers',
+    aLengthMenu: [[10, 25, 50, -1], [10, 25, 50, 'Alle records']],
+    bProcessing: true,
+    aaSorting: [[6, 'asc'], [2, 'desc']],
+    aoColumnDefs: [
+//      {bVisible: false, aTargets: [5]},
+//      {bSortable: false, aTargets: [2, 6]},
+//      {asSorting: ['desc'], aTargets: [3]},
+//      {bSearchable: false, sTitle: 'Rubriek', aTargets: [6]},
+//      {sTitle: 'Lengte', sWidth: '5%',  aTargets: [2]},
+//      {sClass: 'dt_fluo', aTargets: [0]}
+    ],
+    oLanguage: {sUrl: 'js/vendor/jquery/datatables1.9.4/media/js/datatables.nederlands.txt'}
+  });
 });//END DOC.READY
 //====FUNCTIONS=================================================================
-/**Toggle simple/advanced search options
+/**
  * 
  * @param {1|0} toon setting flag die aangeeft als er getoond of verborgen moet worden
  * @param {type} $link link die toggle functie activeert
@@ -108,10 +113,16 @@ function toggleZoeken(toon, $link, $elem) {
       throw new Error('argument "toon" verkeerd')
     }
 }
-/**AJAX call for new data from dataTable sAjaxSource
+/**AJAX call to refresh data from dataTable sAjaxSource
  * 
  * @returns {undefined}
  */
 function refreshDataTable() {
+//  var qs = $('form').serialize();
+//  var qsa = $('form').serializeArray();
+//  
+//  console.log(qs);
+//  console.log(qsa);
+  
   oTable.fnReloadAjax();
 }

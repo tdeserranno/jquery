@@ -365,6 +365,7 @@ function getAjaxPlanten(){
                 '<table id="plantenlijst" class="omlijnd">'
                 . '<thead>'
                     . '<tr>'
+                        . '<th>id</th>'
                         . '<th>soort</th>'
                         . '<th>kleur</th>'
                         . '<th>hoogte</th>'
