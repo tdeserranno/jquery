@@ -83,6 +83,11 @@ $('#teamkeuzelijst')
 var root = $('article')[0];
 var $list = $('<ol>');
 $('#toc').empty().append(walkTree(root, $list, enterNode, exitNode));
+
+//JQ EXTENSION TESTS
+$.zegDankUTegen('jQuery noob');
+$('<li>').html($.vandaag()).prependTo('footer ul').wordtGroen();
+
 });//end doc.ready
 
 //====FUNCTIONS=================================================================

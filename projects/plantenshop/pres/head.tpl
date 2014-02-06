@@ -25,6 +25,7 @@
 <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 <script src="js/vendor/jquery/js/jquery-1.10.2.js"></script>
 <script src="js/vendor/jquery/js/jquery-ui-1.10.4.custom.min.js"></script>
+<script src="js/vendor/jquery/js/jquery.thomas.utils.js"></script>
 
 <!-- JQ Datepicker localization files-->
 <script type="text/javascript" src="js/vendor/jquery/jquery-validation-1.11.1/localization/jquery.ui.datepicker-de.js"></script>
