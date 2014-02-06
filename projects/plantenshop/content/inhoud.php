@@ -49,6 +49,7 @@ function getMenu(){
 	$str = "<ul id='menu'>
 				<li><a href='index.php'>Home</a></li>
 				<li><a href='index.php?page=shop'>Plantenshop</a></li>
+				<li><a href='index.php?page=ajaxshop'>Ajax Shop</a></li>
 				<li><a href='index.php?page=zorg'>Verzorging</a></li>
 				<li><a href='index.php?page=galerij'>Galerij</a></li>
 				<li><a href='index.php?page=about'>Over ons</a></li>
@@ -285,6 +286,96 @@ function getPlanten($soort_id, $kleur, $hoogte_min, $hoogte_max){
 	//======Componenten===================
 	
 	$tbl_Planten 		= $PS->geefTabelPlantenAdvanced($soort_id, $kleur, $hoogte_min, $hoogte_max); //tabel
+	$soortendropdown 	= $PS->geefDDAlleSoorten();//dropdown
+	$kleurendropdown 	= $PS->geefDDAlleKleuren();//array van kleuren
+
+	//keuzelijst object. method parse() returnt HTML
+	$soorten_dd 		= $soortendropdown	->parse();
+	$kleuren_dd 		= $kleurendropdown	->parse();
+
+	//======output===================
+	
+	$str =  "<section>
+			<h2>Ons plantenaanbod</h2>
+    		<p>Om te kunnen bestellen moet je een geregistreerde klant zijn: <a href='index.php?page=registreer'>registreer hier</a></p>
+			</section>";
+	
+	
+	//zoeken 
+	$str .= "<section>
+			<div id='zoeken'>
+      		<p><a id='adv_zoeken_link' href='#'>geavanceerd zoeken</a></p>
+			
+			<form name='frm1' id='frm1' class='cmxform' action='index.php' method='get'>
+			<input type='hidden' name='page' value='shop' />
+			<div><label for='soort_id'>Soorten: </label>". $soorten_dd . "</div>";
+    
+	//adv zoeken
+//		$str .= "<!--start geavanceerd zoeken -->
+//				<div id='adv_zoeken' style='display:none' >"; // 
+		$str .= "<!--start geavanceerd zoeken -->
+				<div id='adv_zoeken'>"; // 
+		
+		$str .= "<div><label for='kleur'>kleur: </label>". $kleuren_dd . "</div>";
+		$str .= "<div>
+					<label for='hoogte'>hoogte tussen: </label>
+					<div class='controlbox vert'>
+					<input type='text' id='hoogte_min' name='hoogte_min' size='4' class='kort' /> en
+					<input type='text' id='hoogte_max' name='hoogte_max' size='4' class='kort' />
+					</div>
+					</div>";
+//     originele inputs                 <input type='text' id='hoogte_min' name='hoogte_min' size='4' class='kort' value='0'  /> en
+//					<input type='text' id='hoogte_max' name='hoogte_max' size='4' class='kort' value='5000' />		
+		$str .= "<div>
+					<label></label>
+					<div class='controlbox vert'>
+
+					<!--start slider -->
+					<div id='slider-range-hoogte' class='slider'></div>
+					<!--einde slider -->
+					
+					</div>
+					</div>";								
+					
+		$str .= "</div>
+				<!--  einde geavanceerd zoeken -->";
+	  
+    
+	$str .= "<div><label></label><div class='controlbox hor'><input type='submit' value='zoeken' /><input type='reset' /></div></div>
+      		</form>
+    
+			</div>
+			</section>";
+	
+	//de tabel
+	$str .= "<section>". $tbl_Planten. "</section>";
+	
+	return $str;
+}
+//*************************************************
+function getAjaxPlanten(){
+	//Plantenlijst via PHP
+	//AJAX
+	
+	global $PS;
+	
+	//======Componenten===================
+	
+	$tbl_Planten 		= //tabel skelet
+                '<table id="plantenlijst" class="omlijnd">'
+                . '<thead>'
+                    . '<tr>'
+                        . '<th>soort</th>'
+                        . '<th>kleur</th>'
+                        . '<th>hoogte</th>'
+                        . '<th>begin bloei</th>'
+                        . '<th>eind bloei</th>'
+                        . '<th>prijs</th>'
+                        . '<th>rubriek</th>'
+                    . '</tr>'
+                . '</thead>'
+                . '<tbody></tbody>'
+                . '<table>'; 
 	$soortendropdown 	= $PS->geefDDAlleSoorten();//dropdown
 	$kleurendropdown 	= $PS->geefDDAlleKleuren();//array van kleuren
 

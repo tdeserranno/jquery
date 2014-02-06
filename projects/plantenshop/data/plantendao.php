@@ -1,8 +1,8 @@
 <?php
 //datalaag
 
-require_once("entities/planten.php"); //pad steeds vanuit de controller
-require_once("entities/soorten.php"); //pad steeds vanuit de controller
+require_once(__ROOT__.'/entities/planten.php'); //pad steeds vanuit de controller
+require_once(__ROOT__.'/entities/soorten.php'); //pad steeds vanuit de controller
 require_once("abstractdao.php"); //connectiegegevens
 
 class PlantenDAO extends AbstractDAO{

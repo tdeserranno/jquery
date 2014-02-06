@@ -61,6 +61,31 @@ if(isset($_GET['page'])){
                         ));
                         
 			break;
+                    
+		case "ajaxshop":
+			/*** Planten pagina, PHP, AJAX ***/
+			
+			//init zoekvariabelen
+			$soort_id 					= (isset($_GET['soort_id']))	?$_GET['soort_id']			:'%';
+			$kleur 						= (isset($_GET['kleur']))		?$_GET['kleur']				:'%';
+			$hoogte_min 				= (isset($_GET['hoogte_min']))	?intval($_GET['hoogte_min']):0;
+			$hoogte_max 				= (isset($_GET['hoogte_max']))	?intval($_GET['hoogte_max']):5000;
+
+			
+			$tpl['title'] 				= "de Plantenshop: ons aanbod"; 		
+			$tpl['body_id'] 			= "shop";					
+			//content
+			$tpl['rechts'] 				= getAjaxPlanten();
+			$tpl['paginaScripts'] = getScriptElements(array(
+                            'js/vendor/jquery/datatables1.9.4/media/js/jquery.dataTables.min.js',
+                            'js/vendor/jquery/datatables1.9.4/media/js/dataTables.fnReloadAjax.js',
+                            'js/ajaxshop.js'
+                            ));
+                        $tpl['paginaStylesheets'] = getLinkElements(array(
+                            'js/vendor/jquery/datatables1.9.4/media/css/jquery.dataTables.css'
+                        ));
+                        
+			break;
 		
 		case "zorg":
 			/*** Verzorging pagina ***/

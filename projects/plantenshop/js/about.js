@@ -13,11 +13,11 @@ $(function() {
 //            .end()
 //          .addClass('onderlijnd').length
 //          );
-//====OPMAAK TABELLEN===========================================================
+//----OPMAAK TABELLEN-----------------------------------------------------------
 $('tbody tr:odd').addClass('oneven');
 $('tbody tr:even').addClass('even');
 
-//====EVENTHANDLER EXTERNE LINKS================================================
+//----EVENTHANDLER EXTERNE LINKS------------------------------------------------
 //$('a[href^="http"').click(
 //voordelen .on() zie cursus p.24
 $('a[href^="http"').on('click',
@@ -25,12 +25,12 @@ $('a[href^="http"').on('click',
           alert('U staat op het punt deze pagina te verlaten');
         }
         );//end a[http].click
-//====AANMAKEN NAAR BOVEN BUTTONS VOOR IEDERE H TAG=============================
+//----AANMAKEN NAAR BOVEN BUTTONS VOOR IEDERE H TAG-----------------------------
 $('<a href="#about" title="terug naar boven">terug naar boven</a>')
         .insertBefore(':header:gt(1)')
         .button({icons:{secondary: 'ui-icon-circle-triangle-n'}});
 
-//====DYNAMISCH OPVULLEN VAN TEAM SECTION=======================================
+//----DYNAMISCH OPVULLEN VAN TEAM SECTION---------------------------------------
 //$('<ul>').insertAfter('#team h3');
 //$('#team h3')
 //        .after('<ul>')
@@ -45,7 +45,7 @@ $('<a href="#about" title="terug naar boven">terug naar boven</a>')
 //});
 //$('#team h3').after($uul);
 
-//====SELECT w/ JSON data=======================================================
+//----SELECT w/ JSON data-------------------------------------------------------
 var $container = $('<div id="teamboks">');
 var $detailDiv = $('<div id="teamgegevens">');
 var $keuzelijst = $('<select id="teamkeuzelijst">');
@@ -57,11 +57,32 @@ $keuzelijst.html(strDeOptions);
 $container.append($keuzelijst).prepend($detailDiv);
 $('#team h3').after($container);
 
-//====AANMAKEN VAN TABLE OF CONTENTS============================================
+//----EVENTHANDLER SELECT CHANGE - AJAX CALL JSON DATA TEAM---------------------
+$('#teamkeuzelijst')
+        .on('change', function() {
+          var waarde = $(this).val();
+//          console.log(waarde + ' gekozen');
+//          $.getJSON(url, data, success);//syntax, zie p.97
+          $.getJSON(
+                  'services/ajax_json_team.php',
+                  {teamlid: waarde},
+                  function(jsondata) {
+                    var strHTML = '';
+                    if (jsondata.naam) {
+                      strHTML += '<img src="images/' + jsondata.foto + '" />';
+                      strHTML += '<h3>' + jsondata.naam + '</h3>';
+                      strHTML += '<p>leeftijd: ' + jsondata.leeftijd + '</p>';
+                      strHTML += '<p>functie: ' + jsondata.functie + '</p>';
+                    }
+                    $('#teamgegevens').html(strHTML);
+                  }
+          );//END GETJSON TEAM
+});
+
+//----AANMAKEN VAN TABLE OF CONTENTS--------------------------------------------
 var root = $('article')[0];
 var $list = $('<ol>');
 $('#toc').empty().append(walkTree(root, $list, enterNode, exitNode));
-
 });//end doc.ready
 
 //====FUNCTIONS=================================================================
