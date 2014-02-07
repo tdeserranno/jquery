@@ -50,10 +50,15 @@ var $container = $('<div id="teamboks">');
 var $detailDiv = $('<div id="teamgegevens">');
 var $keuzelijst = $('<select id="teamkeuzelijst">');
 var strDeOptions = '<option value="">--- het team ---</option>';
-$.each(lijst, function(n, value) {
-  strDeOptions += '<option>' + value + '</option>';
-});
-$keuzelijst.html(strDeOptions);
+//originele versie zonder custom method
+//$.each(lijst, function(n, value) {
+//  strDeOptions += '<option>' + value + '</option>';
+//});
+//$keuzelijst.html(strDeOptions);
+
+//custom method versie
+$keuzelijst.vulSelect(lijst, '--- kies een teamlid ---');
+
 $container.append($keuzelijst).prepend($detailDiv);
 $('#team h3').after($container);
 
@@ -82,7 +87,9 @@ $('#teamkeuzelijst')
 //----AANMAKEN VAN TABLE OF CONTENTS--------------------------------------------
 var root = $('article')[0];
 var $list = $('<ol>');
-$('#toc').empty().append(walkTree(root, $list, enterNode, exitNode));
+$('#toc')
+        .empty()
+        .append(walkTree(root, $list, enterNode, exitNode));
 
 //JQ EXTENSION TESTS
 $.zegDankUTegen('jQuery noob');

@@ -668,7 +668,12 @@ function getGalerij(){
     	<p>Enkele soorten:</p>";
 		
 		//extra knoppen hier
-		$str .= "";
+		$str .= "<p>"
+                        . "<span id='stop' class='knop'>stop</span>"
+                        . "<span id='boven' class='knop'>boven</span>"
+                        . "<span id='aan' class='knop'>aan</span>"
+                        . "<span id='af' class='knop'>af</span>"
+                        . "</p>";
 		
 		$str .= "</section>";
 		$str .= "
