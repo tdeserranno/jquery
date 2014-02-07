@@ -6,6 +6,14 @@
 <meta name="Description" content="dit is de oefening voor de vdab opleidingsmodule jQuery. 'Sardine Airways' is een fictieve maatschappij. Indien u een  sardine bent, wend u tot een ander bedrijf" />
 <title>Sardine Airways: jQuery eindtaak</title>
 <link rel='stylesheet' type="text/css"  href="css/eindtaak.css"/>
+<!--jQuery-->
+<link rel="stylesheet" type="text/css" href="jquery/css/blitzer/jquery-ui-1.10.4.custom.min.css"/>
+<script type="text/javascript" src="jquery/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="jquery/js/jquery-ui-1.10.4.custom.min.js"></script>
+<!--jQuery Validation-->
+<script type="text/javascript" src="jquery/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+<!--custom-->
+<script type="text/javascript" src="scripts/jquery.sardineair.js"></script>
 </head>
 <body>
 <div id="container">
@@ -17,6 +25,14 @@
     <div id="midden">
       <div id="prent"></div>
       <div id="inhoud">
+          <!--Navigation UL-->
+          <ul>
+              <li><a href="#vlucht">Vlucht boeken</a></li>
+              <li><a href="#checkin">Online check-in</a></li>
+              <li><a href="#hotel">Zoek een hotel</a></li>
+              <li><a href="#wagen">Wagen boeken</a></li>
+          </ul>
+          <!--Navigation UL END-->
         <div id="vlucht">
           <h1>Vlucht boeken</h1>
           <form name="frmVlucht" id ="frmVlucht" action="reflect_data.php" method="get">
