@@ -12,8 +12,13 @@
 <script type="text/javascript" src="jquery/js/jquery-ui-1.10.4.custom.min.js"></script>
 <!--jQuery Validation-->
 <script type="text/javascript" src="jquery/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+<!--jQuery Datepicker localization-->
+<script type="text/javascript" src="jquery/jquery-validation-1.11.1/localization/jquery.ui.datepicker-nl-BE.js"></script>
+
 <!--custom-->
 <script type="text/javascript" src="scripts/jquery.sardineair.js"></script>
+<!--jQuery plugin Cylce2-->
+<script type="text/javascript" src="jquery/js/jquery-cycle2.js"></script>
 </head>
 <body>
 <div id="container">
@@ -23,7 +28,12 @@
     <div id="links">&nbsp;</div>
     <div id="tester" style="display:none">tester element</div>
     <div id="midden">
-      <div id="prent"></div>
+        <div id="prent" class="cycle-slideshow">
+<!--            <img src="images/sardines1.jpg">
+            <img src="images/sardines2.jpg">
+            <img src="images/sardines3.jpg">
+            <img src="images/sardines4.jpg">-->
+        </div>
       <div id="inhoud">
           <!--Navigation UL-->
           <ul>
