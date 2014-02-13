@@ -54,7 +54,7 @@ body {
 	width:100%;
 	height:100px;
 	background:transparent url(../images/sardines1.jpg) no-repeat scroll top left;
-        overflow: hidden;
+        overflow: hidden;/*added to hide overlap of images bigger than container*/
 	}
 #links{
 	float:left;
@@ -104,4 +104,8 @@ select, input {
 fieldset input, fieldset select, fieldset textarea {
   font-size:100%;
   font-weight:normal;
+}
+/*jQuery validate error messages*/
+.error{
+    color: red;
 }

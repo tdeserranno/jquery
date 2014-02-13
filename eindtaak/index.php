@@ -28,12 +28,7 @@
     <div id="links">&nbsp;</div>
     <div id="tester" style="display:none">tester element</div>
     <div id="midden">
-        <div id="prent" class="cycle-slideshow">
-<!--            <img src="images/sardines1.jpg">
-            <img src="images/sardines2.jpg">
-            <img src="images/sardines3.jpg">
-            <img src="images/sardines4.jpg">-->
-        </div>
+        <div id="prent" class="cycle-slideshow"></div><!--class added for Cycle2 plugin-->
       <div id="inhoud">
           <!--Navigation UL-->
           <ul>
